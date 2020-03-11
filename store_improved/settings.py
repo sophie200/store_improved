@@ -25,7 +25,7 @@ SECRET_KEY = 'djypfnjxzl+9eft_8xze&jf-@rnlw&*+ly0c3c)$qe*l-gszff'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wycrochet.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
