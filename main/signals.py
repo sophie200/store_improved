@@ -11,10 +11,6 @@ THUMBNAIL_SIZE = (300, 300)
 
 @receiver(pre_save, sender=ProductImage)
 def generate_thumbnail(sender, instance, **kwargs):
-    logger.info(
-        "Generating thumbnail for product %d",
-        instance.product.id,
-    )
     image = Image.open(instance.image)
     image = image.convert("RGB")
     image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
@@ -47,7 +43,3 @@ def merge_baskets_if_found(sender, user, request, **kwargs):
         except Basket.DoesNotExist:
             anonymous_basket.user = user
             anonymous_basket.save()
-            logger.info(
-                "Assigned user to basket id %d",
-                anonymous_basket.id,
-            )
