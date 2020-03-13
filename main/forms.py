@@ -62,7 +62,7 @@ BasketLineFormSet = inlineformset_factory(
 )
 
 class OrderConfirmForm(forms.Form):
-    name = forms.CharField(label="To confirm your order please write something in the space below and then press the Confirm Order button.", max_length=10000)
+    name = forms.CharField(label="To confirm your order write something in the space below and then press the Confirm Order button.", max_length=10000)
 
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
