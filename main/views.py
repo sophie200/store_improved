@@ -54,6 +54,15 @@ class SignupView(FormView):
 
         return response
 
+class ProductTagsView(ListView):
+    template_name = "product_tags.html"
+    paginate_by = 4
+
+    def get_queryset(self):
+        product_tags = models.ProductTag.objects.active()
+        
+        return product_tags.order_by("name")
+
 class ProductListView(ListView):
     template_name = "product_list.html"
     paginate_by = 4

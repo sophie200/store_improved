@@ -39,13 +39,9 @@
             class="nav-item {% if request.path == "/about/" %}active{% endif %}">
             <a class="nav-link" href="/about/">About Us</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/products/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Items
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/products/hat/">Hats</a>
-            </div>
+          <li
+            class="nav-item {% if request.path == "/products/" %}active{% endif %}">
+            <a class="nav-link" href="/products/">Products</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">

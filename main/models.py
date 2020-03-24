@@ -52,6 +52,9 @@ class User(AbstractUser):
 class ProductTagManager(models.Manager):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
+        
+    def active(self):
+        return self.filter(active=True)
 
 class ProductTag(models.Model):
     name = models.CharField(max_length=40)
