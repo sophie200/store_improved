@@ -14,6 +14,73 @@
     <p> <a href="/login/"> Log In </a> |
         <a href="/signup/">Sign Up </a> </p>
   {% endif %}
-  <img class="crochetimage" src="{% static 'images/hats.jpg' %}">
-  <img class="crochetimage" src="{% static 'images/hats-and-scarves.jpg' %}">
-{% endblock content %}
+  <div id="imagebox"></div>
+{% endblock content %}  
+
+{% block js %}
+<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<style type = "text/css" media="screen">
+.image{
+  margin: 10px;
+  display: inline-block;
+}
+</style>
+
+<script>
+const e = React.createElement;
+
+var imageStyle = {
+    margin: "10px",
+    display: "inline-block"
+}
+
+class ImageBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+        currentImage: this.props.imageStart
+    }
+  }
+
+  click(image) {
+    this.setState({
+        currentImage: image
+    });
+  }
+
+  render() {
+    const images = this.props.images.map((i) =>
+       e('div', {style: imageStyle, className: "image", key: i.image}, 
+        e('img', {onClick: this.click.bind(this, i), width: "75", src: i.thumbnail})
+        )
+    );
+    return e('div', {className: "gallery"}, 
+        e('div', {className: "current-image"}, 
+         e('img', {src: this.state.currentImage.image})
+         ),
+        images)
+  }
+}
+document.addEventListener("DOMContentLoaded", function (event) {
+      var images = [
+      { "image": "{% static 'images/wyblanket.jpg' %}",
+        "thumbnail": "{% static 'images/wyblanket.jpg' %}"},
+      { "image": "{% static 'images/hats.jpg' %}",
+        "thumbnail": "{% static 'images/hats.jpg' %}"},
+      { "image": "{% static 'images/hats-and-scarves.jpg' %}",
+        "thumbnail": "{% static 'images/hats-and-scarves.jpg' %}"},
+      { "image": "{% static 'images/baby-boy.jpg' %}",
+        "thumbnail": "{% static 'images/baby-boy.jpg' %}"},
+      { "image": "{% static 'images/baby-girl.jpg' %}",
+        "thumbnail": "{% static 'images/baby-girl.jpg' %}"},
+      { "image": "{% static 'images/poncho.jpg' %}",
+        "thumbnail": "{% static 'images/poncho.jpg' %}"},
+      ]
+      ReactDOM.render(React.createElement(ImageBox, {
+        images: images,
+        imageStart: images[0]
+      }), document.getElementById('imagebox'));
+    });
+</script>
+{% endblock %}
