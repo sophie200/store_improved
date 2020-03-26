@@ -2,13 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <style>
+    .container {
+      display: block;
+      max-width: 500px;
+      max-height: 500px;
+      margin: auto;
+      }
     body {
           padding-bottom: 50px;
          }
-    #container {
-      max-width: 500px;
-      margin: auto;
-    }
   </style>
   <head>
     <meta charset="utf-8">
@@ -71,7 +73,7 @@
         </ul>
       </div>
     </nav>
-    <div class = "container">
+    <div class="container">
       {% if request.basket %}
           <div>
             {{ request.basket.count }}
