@@ -38,6 +38,16 @@
       <td>{{ object.date_updated|date:"F Y" }}</td>
     </tr>
   </table>
+  {% if user.is_authenticated %}
   <p> <a href="{% url "add_to_basket" %}?product_id={{ object.id }}">Add to basket</a> |
-      <a href="/basket/">Go to basket</a></p>
+    <a href="/basket/">Go to basket</a></p>
+  {% else %}
+  <p>Please log in or make an account to continue shopping!</p>
+  <a
+    href="{% url "signup" %}?next={% url "add_to_basket" %}"
+    class="btn btn-primary">Signup</a>
+  <a
+    href="{% url "login" %}?next={% url "add_to_basket" %}"
+    class="btn btn-primary">Login</a>
+  {% endif %}
 {% endblock content %}

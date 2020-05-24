@@ -16,7 +16,7 @@ urlpatterns = [
     path('about/', AboutPageView.as_view(), name="about"),
     path('signup/', SignupView.as_view(), name="signup"),
     path('login/', auth_views.LoginView.as_view(template_name="login.html", form_class=forms.AuthenticationForm), name="login"),
-    path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name="logout"),
+    path('logout/', views.logout_view, name="logout"),
     path('products/', ProductTagsView.as_view(), name = "tags"),
     path('products/<slug:tag>/', ProductListView.as_view(), name="products"),
     path('product/<slug:slug>/', DetailView.as_view(model=models.Product), name="product"),

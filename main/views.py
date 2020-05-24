@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.views.generic.edit import (
     FormView,
@@ -53,6 +53,10 @@ class SignupView(FormView):
         )
 
         return response
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 class ProductTagsView(ListView):
     template_name = "product_tags.html"

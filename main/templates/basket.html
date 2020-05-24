@@ -14,17 +14,7 @@
       {% endfor %}
       <button type="submit" class="btn btn-default">Update basket</button>
       <hr>
-      {% if user.is_authenticated %}
-        <a href="{% url "address_select" %}" class="btn btn-primary">Place order</a>
-      {% else %}
-        <p>Please log in or make an account to continue!</p>
-        <a
-          href="{% url "signup" %}?next={% url "address_select" %}"
-          class="btn btn-primary">Signup</a>
-        <a
-          href="{% url "login" %}?next={% url "address_select" %}"
-          class="btn btn-primary">Login</a>
-      {% endif %}
+      <a href="{% url "address_select" %}" class="btn btn-primary">Place order</a>
     </form>
   {% else %}
     <p>You have no items in the basket.</p>

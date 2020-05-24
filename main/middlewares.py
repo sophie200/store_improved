@@ -5,7 +5,7 @@ def basket_middleware(get_response):
     def middleware(request):
         if "basket_id" in request.session:
             basket_id = request.session["basket_id"]
-            if Basket.objects.filter(id=basket_id).exists():
+            if models.Basket.objects.filter(id=basket_id).exists():
                 basket = models.Basket.objects.get(id=basket_id)
                 #basket = get_object_or_404(models.Basket, pk=request.GET.get("basket_id"))
                 request.basket = basket
