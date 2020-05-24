@@ -101,8 +101,34 @@ class OrderLineInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "status")
     list_editable = ("status",)
-    list_filter = ("status", "date_added")
+    list_filter = ("status", "shipping_country", "date_added")
     inlines = (OrderLineInline,)
     fieldsets = (
         (None, {"fields": ("user", "status")}),
+        (
+            "Billing info",
+            {
+                "fields": (
+                    "billing_name",
+                    "billing_address1",
+                    "billing_address2",
+                    "billing_zip_code",
+                    "billing_city",
+                    "billing_country",
+                )
+            },
+        ),
+        (
+            "Shipping info",
+            {
+                "fields": (
+                    "shipping_name",
+                    "shipping_address1",
+                    "shipping_address2",
+                    "shipping_zip_code",
+                    "shipping_city",
+                    "shipping_country",
+                )
+            },
+        ),
     )

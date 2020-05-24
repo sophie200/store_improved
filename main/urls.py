@@ -22,6 +22,10 @@ urlpatterns = [
     path('product/<slug:slug>/', DetailView.as_view(model=models.Product), name="product"),
     path('add_to_basket/', views.add_to_basket, name="add_to_basket"),
     path('basket/', views.manage_basket, name="basket"),
-    path('order/order_confirm/', views.OrderConfirmView.as_view(), name="order_confirm"),
+    path('address/', views.AddressListView.as_view(), name="addressupdate_list"),
+    path('address/create/', views.AddressCreateView.as_view(), name="address_create"),
+    path('address/<int:pk>/', views.AddressUpdateView.as_view(), name="address_update"),
+    path('address/<int:pk>/delete/', views.AddressDeleteView.as_view(), name="address_delete"),
+    path('order/address_select/', views.AddressSelectionView.as_view(), name="address_select"),
     path('order/done/', OrderDoneView.as_view(), name="checkout_done"),
 ]

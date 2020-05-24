@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
   <h2>Basket</h2>
   {% if formset %}
@@ -12,23 +11,25 @@
           {{ form.instance.product.name }}
           {{ form }}
         </p>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Update basket</button>
-        {% if user.is_authenticated %}
-        <a href="{% url "order_confirm" %}" class="btn btn-primary">Place order</a>
+      {% endfor %}
+      <button type="submit" class="btn btn-default">Update basket</button>
+      <hr>
+      {% if user.is_authenticated %}
+        <a href="{% url "address_select" %}" class="btn btn-primary">Place order</a>
       {% else %}
+        <p>Please log in or make an account to continue!</p>
         <a
-          href="{% url "signup" %}?next={% url "order_confirm" %}"
+          href="{% url "signup" %}?next={% url "address_select" %}"
           class="btn btn-primary">Signup</a>
         <a
-          href="{% url "login" %}?next={% url "order_confirm" %}"
+          href="{% url "login" %}?next={% url "address_select" %}"
           class="btn btn-primary">Login</a>
       {% endif %}
-      </form>
-    {% else %}
-      <p>You have no items in the basket.</p>
-      <p> <a href="/products/"> Browse items! </a> </p>
-    {% endif %}
+    </form>
+  {% else %}
+    <p>You have no items in the basket.</p>
+    <a href="/products/">Browse our items here!</a>
+  {% endif %}
 {% endblock content %}
 {% block js %}
   {% if formset %}

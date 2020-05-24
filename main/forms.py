@@ -61,20 +61,12 @@ BasketLineFormSet = inlineformset_factory(
     widgets={"quantity": widgets.PlusMinusNumberInput()},
 )
 
-class OrderConfirmForm(forms.Form):
-    name = forms.CharField(label="To confirm your order write something in the space below and then press the Confirm Order button.", max_length=10000)
+class AddressSelectionForm(forms.Form):
+    billing_address = forms.ModelChoiceField(queryset=None)
+    shipping_address = forms.ModelChoiceField(queryset=None)
 
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-    def send_mail(self):
-        message = "From: {0}\n{1}".format(
-            self.cleaned_data["name"],
-        )
-        send_mail(
-            "Site message",
-            message,
-            "wy@crochet.com",
-            ["customerservice@crochet.com"],
-            fail_silently=False,
-        )
+        queryset = models.AddressUpdate.objects.filter(user=user)
+        self.fields["billing_address"].queryset = queryset
+        self.fields["shipping_address"].queryset = queryset

@@ -128,9 +128,58 @@ def manage_basket(request):
 
     return render(request, "basket.html", {"formset": formset})
 
-class OrderConfirmView(LoginRequiredMixin, FormView):
-    template_name = "order_confirm.html"
-    form_class = forms.OrderConfirmForm
+class AddressListView(LoginRequiredMixin, ListView):
+    model = models.AddressUpdate
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
+class AddressCreateView(LoginRequiredMixin, CreateView):
+    model = models.AddressUpdate
+    fields = [
+        "name",
+        "address1",
+        "address2",
+        "zip_code",
+        "city",
+        "country",
+    ]
+    success_url = reverse_lazy("addressupdate_list")
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
+
+class AddressUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.AddressUpdate
+    fields = [
+        "name",
+        "address1",
+        "address2",
+        "zip_code",
+        "city",
+        "country",
+    ]
+    success_url = reverse_lazy("addressupdate_list")
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
+class AddressDeleteView(LoginRequiredMixin, DeleteView):
+    model = models.AddressUpdate
+    success_url = reverse_lazy("addressupdate_list")
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+class AddressSelectionView(LoginRequiredMixin, FormView):
+    template_name = "address_select.html"
+    form_class = forms.AddressSelectionForm
     success_url = reverse_lazy("checkout_done")
 
     def get_form_kwargs(self):
@@ -141,7 +190,10 @@ class OrderConfirmView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         del self.request.session["basket_id"]
         basket = self.request.basket
-        basket.create_order()
+        basket.create_order(
+            form.cleaned_data["billing_address"],
+            form.cleaned_data["shipping_address"],
+        )
         return super().form_valid(form)
 
 class OrderDoneView(TemplateView):
