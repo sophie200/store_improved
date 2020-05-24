@@ -44,10 +44,10 @@
   {% else %}
   <p>Please log in or make an account to continue shopping!</p>
   <a
-    href="{% url "signup" %}?next={% url "add_to_basket" %}"
+    href="{% url "signup" %}?next={{ object.get_absolute_url }}"
     class="btn btn-primary">Signup</a>
   <a
-    href="{% url "login" %}?next={% url "add_to_basket" %}"
+    href="{% url "login" %}?next={{ object.get_absolute_url }}"
     class="btn btn-primary">Login</a>
   {% endif %}
 {% endblock content %}
