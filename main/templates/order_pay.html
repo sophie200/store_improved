@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Payment</h1>
+<div>
+  Your order costs ${{ request.basket.cost_display }}. 
+</div>
+<p>After you pay below you will be directed to a page where you can tell us where you would like your items and billing information to be sent to.</p>
+<form action="{% url 'charge' %}" method="post">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="{{ stripe_key }}"
+      data-description="Order cost"
+      data-amount={{ request.basket.cost }}
+      data-locale="auto">
+  </script>
+</form>
+{% endblock content %}

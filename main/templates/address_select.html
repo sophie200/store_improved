@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Select the billing/shipping addresses</h2>
+  <h1>Select the billing/shipping addresses you want your items to be sent to.</h1>
+  <p>If you're new, or if you want to add a different address, click the "Add an address" button below.</p>
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}

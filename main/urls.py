@@ -6,6 +6,7 @@ from . views import (
     SignupView,
     ProductTagsView,
     ProductListView,
+    OrderPayView,
     OrderDoneView,
 )
 from django.views.generic.detail import DetailView
@@ -27,5 +28,7 @@ urlpatterns = [
     path('address/<int:pk>/', views.AddressUpdateView.as_view(), name="address_update"),
     path('address/<int:pk>/delete/', views.AddressDeleteView.as_view(), name="address_delete"),
     path('order/address_select/', views.AddressSelectionView.as_view(), name="address_select"),
+    path('charge/', views.charge, name="charge"),
+    path('order/pay/', OrderPayView.as_view(), name="order_pay"),
     path('order/done/', OrderDoneView.as_view(), name="checkout_done"),
 ]

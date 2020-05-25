@@ -150,6 +150,12 @@ class Basket(models.Model):
 
     def count(self):
         return sum(i.quantity for i in self.basketline_set.all())
+    
+    def cost(self):
+        return sum(i.product.price for i in self.basketline_set.all()) * 100
+    
+    def cost_display(self):
+        return sum(i.product.price for i in self.basketline_set.all()) 
 
     def create_order(self, billing_address, shipping_address):
         if not self.user:

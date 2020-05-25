@@ -14,7 +14,7 @@
       {% endfor %}
       <button type="submit" class="btn btn-default">Update basket</button>
       <hr>
-      <a href="{% url "address_select" %}" class="btn btn-primary">Place order</a>
+      <a href="{% url "order_pay" %}" class="btn btn-primary">Place order</a>
     </form>
   {% else %}
     <p>You have no items in the basket.</p>

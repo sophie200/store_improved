@@ -54,7 +54,8 @@ class TestModel(TestCase):
 
         with self.assertLogs("main.models", level="INFO") as cm:
             order = basket.create_order(billing, shipping)
-
+        
+        self.assertEqual(basket.cost_display(), 16.00)
         self.assertGreaterEqual(len(cm.output), 1)
 
         order.refresh_from_db()

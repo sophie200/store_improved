@@ -9,6 +9,8 @@ services:
       - ENVIRONMENT=development
       - SECRET_KEY=djypfnjxzl+9eft_8xze&jf-@rnlw&*+ly0c3c)$qe*l-gszff
       - DEBUG=1
+      - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_YNrQXKztTVJfRxfyhNyUQ39t003ukXlb3k
+      - STRIPE_TEST_SECRET_KEY=sk_test_9dmMPhY4vAl5Ty3BscXOimn900HVbkQXXG
     volumes:
       - .:/code
     ports:

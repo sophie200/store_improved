@@ -1,3 +1,5 @@
+import stripe
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
@@ -21,6 +23,8 @@ from django.contrib.auth.mixins import (
 )
 from django import forms as django_forms
 from django.db import models as django_models
+
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -199,6 +203,24 @@ class AddressSelectionView(LoginRequiredMixin, FormView):
             form.cleaned_data["shipping_address"],
         )
         return super().form_valid(form)
+
+class OrderPayView(TemplateView):
+    template_name= 'order_pay.html'
+
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['stripe_key'] = settings.STRIPE_TEST_PUBLISHABLE_KEY
+        return context
+
+def charge(request): 
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount= int(request.basket.cost()),
+            currency='usd',
+            description='Order cost',
+            source=request.POST['stripeToken']
+        )
+        return HttpResponseRedirect(reverse("address_select"))
 
 class OrderDoneView(TemplateView):
     template_name = 'order_done.html'
