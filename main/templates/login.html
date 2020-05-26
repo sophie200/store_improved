@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <h2>Login</h2>
-  <p>Please fill the form below.</p>
+  <p>Please fill out the information below.</p>
   <form method="POST">
     {% csrf_token %}
     {{ form.non_field_errors }}
