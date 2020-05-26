@@ -40,7 +40,7 @@
   </table>
   {% if user.is_authenticated %}
   <p> <a href="{% url "add_to_basket" %}?product_id={{ object.id }}">Add to basket</a> |
-    <a href="/basket/">Go to basket</a></p>
+    <a href="/basket/">Go to basket</a> | <a href="/products/">Keep browsing!</a> </p>
   {% else %}
   <p>Please log in or make an account to continue shopping!</p>
   <a
