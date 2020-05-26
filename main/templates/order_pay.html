@@ -2,10 +2,11 @@
 
 {% block content %}
 <h1>Payment</h1>
-<div>
-  Your order costs ${{ request.basket.cost_display }}. 
-</div>
-<p>After you pay below you will be directed to a page where you can tell us where you would like your items and billing information to be sent to.</p>
+<ul>
+  <li>Your order costs ${{ request.basket.cost_display }}.</li>
+  <li>After you pay below you will be directed to a page where you can tell us where you would like your items 
+    and billing information to be sent to.</li>
+</ul>
 <form action="{% url 'charge' %}" method="post">
   {% csrf_token %}
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
