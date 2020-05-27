@@ -4,16 +4,21 @@
 {% block content %}
   <h1>WY Crochet Club</h1>
   {% if user.is_authenticated %}
-    <p> Hi {{ user.email }}! </p>
-    <p> Our products are located above in the navigation bar! </p>
-    <p>If you want us to make an product we don't already make, please fill out the form
-      <u><a href="https://docs.google.com/forms/d/e/1FAIpQLSdsMp4NvhdvanPmqenmSMsKjOv13uExoyXRYR_aazdF-p9__w/viewform?usp=sf_link"> here. </a> </u></p>
+    <ul class = "big">
+      <li><h6>Hi {{ user.email }}!</h6></li>
+      <li><h6>Our products are located above in the navigation bar!</h6></li>
+      <li><h6>If you want us to make an product we don't already make, please fill out the form
+        <u><a href="https://docs.google.com/forms/d/e/1FAIpQLSdsMp4NvhdvanPmqenmSMsKjOv13uExoyXRYR_aazdF-p9__w/viewform?usp=sf_link"> here. </a> </u></h6></li>
+      <li><h6>If you have a question please contact us at wycrochet@gmail.com</h6></li>
+    </ul>
     <p> <a href="/logout/">Log Out</a></p>
   {% else %}
-    <p> Our products are located above in the navigation bar! </p>
-    <p>If you want us to make an product we don't already make, please fill out the form
-      <u><a href="https://docs.google.com/forms/d/e/1FAIpQLSdsMp4NvhdvanPmqenmSMsKjOv13uExoyXRYR_aazdF-p9__w/viewform?usp=sf_link"> here. </a> </u></p>
-    <p> You are not logged in. </p>
+    <ul class = "big">
+      <li><h6>Our products are located above in the navigation bar!</h6></li>
+      <li><h6>If you want us to make an product we don't already make, please fill out the form
+        <u><a href="https://docs.google.com/forms/d/e/1FAIpQLSdsMp4NvhdvanPmqenmSMsKjOv13uExoyXRYR_aazdF-p9__w/viewform?usp=sf_link"> here. </a> </u></h6></li>
+      <li><h6>If you have a question please contact us at wycrochet@gmail.com</h6></li>
+    </ul>
     <p> <a href="/login/"> Log In </a> |
         <a href="/signup/">Sign Up </a> </p>
   {% endif %}

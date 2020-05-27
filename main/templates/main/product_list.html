@@ -4,6 +4,7 @@
   <h1>Products</h1>
   {% for product in page_obj %}
     <p>{{ product.name }}</p>
+    <p>Price: ${{ product.price }}</p>
     <p>
       <a href="{{ product.get_absolute_url }}">See it here</a>
     </p>
