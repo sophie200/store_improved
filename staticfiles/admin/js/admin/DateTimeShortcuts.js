@@ -141,7 +141,7 @@
             //
             // Markup looks like:
             // <div id="clockbox1" class="clockbox module">
-            //     <h2>Choose a time</h2>
+            //     <h1>Choose a time</h1>
             //     <ul class="timelist">
             //         <li><a href="#">Now</a></li>
             //         <li><a href="#">Midnight</a></li>
@@ -271,10 +271,10 @@
             // Markup looks like:
             //
             // <div id="calendarbox3" class="calendarbox module">
-            //     <h2>
+            //     <h1>
             //           <a href="#" class="link-previous">&lsaquo;</a>
             //           <a href="#" class="link-next">&rsaquo;</a> February 2003
-            //     </h2>
+            //     </h1>
             //     <div class="calendar" id="calendarin3">
             //         <!-- (cal) -->
             //     </div>
